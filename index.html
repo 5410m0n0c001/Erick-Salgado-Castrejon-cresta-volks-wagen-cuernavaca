@@ -66,6 +66,9 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
         .video-overlay {
@@ -102,7 +105,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             opacity: 0;
-            animation: textReveal 2s ease-out 0.5s forwards;
+            animation: textReveal 4s ease-out 6s forwards;
         }
 
         .hero .position {
@@ -110,13 +113,13 @@
             color: var(--vw-light-blue);
             margin-bottom: 0.5rem;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards;
+            animation: fadeInUp 4s ease-out 6s forwards;
         }
 
         .hero .company {
             font-size: clamp(1rem, 2.5vw, 1.4rem);
             opacity: 0;
-            animation: fadeInUp 1s ease-out 1.2s forwards;
+            animation: fadeInUp 4s ease-out 6s forwards;
         }
 
         /* Poster Section */
@@ -198,6 +201,8 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+            justify-items: center;
+            max-width: 100%;
         }
 
         .contact-item {
@@ -207,6 +212,9 @@
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid transparent;
+            width: 100%;
+            max-width: 280px;
+            justify-self: center;
         }
 
         .contact-item:hover {
@@ -339,10 +347,14 @@
         }
 
         .social-toggle img {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             filter: brightness(0) invert(1);
+            object-fit: contain;
+            background: transparent;
+            display: block;
+            margin: 0 auto;
         }
 
         .social-label {
@@ -465,12 +477,12 @@
 
         /* Animations */
         @keyframes textReveal {
-            0% { opacity: 0; transform: translateY(30px); }
+            0% { opacity: 0; transform: translateY(-30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(20px); }
+            0% { opacity: 0; transform: translateY(-20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
@@ -510,6 +522,10 @@
             .social-toggle img {
                 width: 35px;
                 height: 35px;
+                object-fit: contain;
+                background: transparent;
+                display: block;
+                margin: 0 auto;
             }
 
             .social-label {
@@ -582,6 +598,15 @@
             .poster-overlay,
             .footer-overlay {
                 background: rgba(0, 30, 80, 0.7) !important;
+            }
+
+            /* Fix mobile backgrounds - ensure proper sizing */
+            .hero,
+            .poster-section,
+            .footer {
+                background-size: cover !important;
+                background-position: center center !important;
+                background-attachment: scroll !important;
             }
         }
 
@@ -668,7 +693,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <video class="video-bg" autoplay muted loop playsinline>
-            <source src="assets/hero.mp4" type="video/mp4">
+            <source src="hero.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
         <div class="hero-content">
@@ -764,7 +789,7 @@
     <!-- Floating Social Button - LARGER VERSION -->
     <div class="floating-social">
         <button class="social-toggle" onclick="toggleSocialMenu()" aria-label="Redes sociales">
-            <img src="assets/logo.png" alt="Logo Volkswagen">
+            <img src="logo2.png" alt="Logo Volkswagen">
             <span class="social-label">Síguenos</span>
         </button>
         <div class="social-menu" id="socialMenu">
