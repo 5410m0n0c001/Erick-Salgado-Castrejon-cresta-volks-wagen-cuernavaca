@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erick Salgado Castrejon - Gerente Cresta Volkswagen Cuernavaca</title>
+    <meta name="description" content="Tarjeta digital profesional de Erick Salgado Castrejon, Gerente de Cresta Volkswagen Cuernavaca. Contacto, ubicación y servicios automotrices.">
+    <meta name="keywords" content="Volkswagen, Cresta, Cuernavaca, Erick Salgado, Gerente, Autos, Vehículos">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --vw-blue: #001E50;
+            --vw-light-blue: #00B0F0;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: rgba(0, 30, 80, 0.3);
+            --glow: rgba(0, 176, 240, 0.6);
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--vw-blue) 0%, #001122 50%, var(--vw-light-blue) 100%);
+            color: var(--white);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--vw-light-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor.active {
+            transform: scale(1.5);
+            background: var(--vw-light-blue);
+        }
+
+        /* Hide default cursor on desktop */
+        @media (min-width: 1025px) {
+            * { cursor: none !important; }
+        }
+
+        /* Video Backgrounds */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 30, 80, 0.8), rgba(0, 176, 240, 0.3));
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--white), var(--vw-light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: textReveal 2s ease-out 0.5s forwards;
+        }
+
+        .hero .position {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--vw-light-blue);
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .hero .company {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+
+        /* Poster Section */
+        .poster-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .poster-section .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .poster-section .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 30, 80, 0.7), rgba(0, 176, 240, 0.4));
+            z-index: -1;
+        }
+
+        /* Main Card */
+        .main-card {
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--vw-light-blue), transparent);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--white), var(--vw-light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 176, 240, 0.2);
+            border-color: var(--vw-light-blue);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--vw-light-blue);
+        }
+
+        .contact-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--glow), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--glow);
+            border-color: var(--vw-light-blue);
+        }
+
+        .btn.whatsapp {
+            background: var(--whatsapp-green);
+            border-color: var(--whatsapp-green);
+        }
+
+        .btn.whatsapp:hover {
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Floating Social Button - LARGER VERSION */
+        .floating-social {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .social-toggle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--vw-blue), var(--vw-light-blue));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 176, 240, 0.4),
+                        0 0 0 0 rgba(0, 176, 240, 0.7);
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 32px rgba(0, 176, 240, 0.4),
+                            0 0 0 0 rgba(0, 176, 240, 0.7);
+            }
+            50% {
+                box-shadow: 0 8px 32px rgba(0, 176, 240, 0.6),
+                            0 0 0 20px rgba(0, 176, 240, 0);
+            }
+        }
+
+        .social-toggle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 48px rgba(0, 176, 240, 0.6);
+        }
+
+        .social-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .social-toggle img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-menu {
+            position: absolute;
+            bottom: 100px;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-menu.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.5s ease forwards;
+            animation-delay: var(--delay);
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--vw-light-blue), var(--vw-blue));
+            border-color: var(--vw-light-blue);
+            transform: translateX(-10px) scale(1.1);
+            box-shadow: 0 8px 24px rgba(0, 176, 240, 0.5);
+        }
+
+        .social-link svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            min-height: 50vh;
+            overflow: hidden;
+        }
+
+        .footer .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .footer .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 30, 80, 0.8), rgba(0, 176, 240, 0.3));
+            z-index: -1;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer .copyright {
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes textReveal {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .poster-section {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            .cta-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-social {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .social-toggle {
+                width: 70px;
+                height: 70px;
+            }
+
+            .social-toggle img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .social-label {
+                font-size: 10px;
+            }
+
+            .social-link {
+                width: 55px;
+                height: 55px;
+            }
+
+            .social-link svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            /* Mobile video optimization */
+            .poster-section .video-bg,
+            .footer .video-bg {
+                opacity: 0.3;
+            }
+
+            .footer {
+                min-height: 30vh;
+            }
+
+            /* Mobile video adjustments for COMPLETE visibility - FORCED */
+            .hero-video,
+            .poster-video,
+            .footer-video {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important; /* FORCED: Show complete video */
+                object-position: center center !important;
+                transform: none !important;
+                background: #001E50 !important;
+            }
+
+            /* Container backgrounds for letterbox effect */
+            .hero-video-container,
+            .poster-video-container,
+            .footer-video-container {
+                background: #001E50 !important;
+            }
+
+            /* Adjust section heights for mobile */
+            .hero-section,
+            .hero-video-container {
+                height: 100vh !important;
+                min-height: 100vh !important;
+            }
+
+            .poster-section,
+            .poster-video-container {
+                min-height: 100vh !important;
+                height: auto !important;
+            }
+
+            .footer-section,
+            .footer-video-container {
+                min-height: 50vh !important;
+                height: auto !important;
+            }
+
+            /* Darker overlays for better contrast over complete videos */
+            .hero-overlay,
+            .poster-overlay,
+            .footer-overlay {
+                background: rgba(0, 30, 80, 0.7) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-video-container {
+                height: 70vh;
+            }
+
+            .poster-video-container {
+                min-height: 90vh;
+            }
+
+            .footer-video-container {
+                min-height: 35vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.9rem;
+            }
+
+            /* Extra small screens - ensure complete video visibility */
+            .hero-video,
+            .poster-video,
+            .footer-video {
+                object-fit: contain !important;
+                object-position: center center !important;
+            }
+
+            .hero-video-container {
+                height: 100vh !important;
+            }
+
+            .poster-video-container {
+                min-height: 100vh !important;
+            }
+
+            .footer-video-container {
+                min-height: 45vh !important;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles */
+        .btn:focus,
+        .social-link:focus,
+        .social-toggle:focus {
+            outline: 2px solid var(--vw-light-blue);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="video-bg" autoplay muted loop playsinline>
+            <source src="assets/hero.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="hero-content">
+            <h1>Erick Salgado Castrejon</h1>
+            <p class="position">Gerente</p>
+            <p class="company">Cresta Volkswagen Cuernavaca</p>
+        </div>
+    </section>
+
+    <!-- Poster Section with poster.mp4 background -->
+    <section class="poster-section">
+        <video class="video-bg" autoplay muted loop playsinline preload="auto">
+            <source src="assets/poster.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+        <div class="video-overlay"></div>
+
+        <div class="main-card">
+            <div class="card" data-aos="fade-up">
+            <div class="contact-info">
+                <h2>Información de Contacto</h2>
+                <div class="contact-grid">
+                    <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Móvil</h3>
+                        <p>+52 777 367 6346</p>
+                    </div>
+                    <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-phone"></i>
+                        <h3>Oficina</h3>
+                        <p>+52 777 101 0530</p>
+                    </div>
+                    <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>erick.crestavw@gmail.com</p>
+                    </div>
+                    <div class="contact-item" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Ubicación</h3>
+                        <p>Cuernavaca, Morelos</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="tel:+527773676346" class="btn" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-mobile-alt"></i>
+                    Llamar Móvil
+                </a>
+                <a href="tel:+527771010530" class="btn" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-phone"></i>
+                    Llamar Oficina
+                </a>
+                <a href="mailto:erick.crestavw@gmail.com" class="btn" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-envelope"></i>
+                    Enviar Email
+                </a>
+                <a href="https://wa.me/527773676346?text=Hola,%20me%20gustaría%20saber%20su%20catálogo%20de%20vehículos%20disponibles%20en%20este%20momento" class="btn whatsapp" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+                <a href="https://maps.app.goo.gl/bSuf2FmJSwo2DXQa9" class="btn" data-aos="zoom-in" data-aos-delay="500" target="_blank" rel="noopener">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ver Ubicación
+                </a>
+                <button class="btn" onclick="downloadVCard()" data-aos="zoom-in" data-aos-delay="600">
+                    <i class="fas fa-download"></i>
+                    Descargar vCard
+                </button>
+                <a href="http://www.vw-crestacuernavaca.com.mx/" class="btn" data-aos="zoom-in" data-aos-delay="700" target="_blank" rel="noopener">
+                    <i class="fas fa-globe"></i>
+                    Sitio Web
+                </a>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <video class="video-bg" autoplay muted loop playsinline preload="auto">
+            <source src="assets/footer.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="footer-content" data-aos="fade-up">
+            <p>Conoce nuestra amplia gama de vehículos Volkswagen en Cresta Cuernavaca</p>
+            <p class="copyright">© 2025 Cresta Volkswagen Cuernavaca. Todos los derechos reservados.</p>
+        </div>
+    </section>
+
+    <!-- Floating Social Button - LARGER VERSION -->
+    <div class="floating-social">
+        <button class="social-toggle" onclick="toggleSocialMenu()" aria-label="Redes sociales">
+            <img src="assets/logo.png" alt="Logo Volkswagen">
+            <span class="social-label">Síguenos</span>
+        </button>
+        <div class="social-menu" id="socialMenu">
+            <a href="#" class="social-link" aria-label="Facebook" style="--delay: 0.1s">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram" style="--delay: 0.2s">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn" style="--delay: 0.3s">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter" style="--delay: 0.4s">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function updateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+
+            requestAnimationFrame(updateCursor);
+        }
+
+        updateCursor();
+
+        // Cursor interactions
+        document.addEventListener('mousedown', () => cursor.classList.add('active'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+        });
+
+        // Magnetic buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Toggle social menu - ENHANCED FUNCTIONALITY
+        function toggleSocialMenu() {
+            const menu = document.getElementById('socialMenu');
+            const btn = document.querySelector('.social-toggle');
+            const isOpen = menu.classList.contains('open');
+
+            if (isOpen) {
+                menu.classList.remove('open');
+                btn.style.transform = 'rotate(0deg)';
+            } else {
+                menu.classList.add('open');
+                btn.style.transform = 'rotate(45deg)';
+            }
+        }
+
+        // Close social menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const floatingSocial = document.querySelector('.floating-social');
+            const menu = document.getElementById('socialMenu');
+
+            if (!floatingSocial.contains(e.target)) {
+                menu.classList.remove('open');
+            }
+        });
+
+        // vCard generation and download
+        function downloadVCard() {
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Erick Salgado Castrejon
+TITLE:Gerente
+ORG:Cresta Volkswagen Cuernavaca
+TEL;TYPE=CELL:+527773676346
+TEL;TYPE=WORK:+527771010530
+EMAIL:erick.crestavw@gmail.com
+URL:http://www.vw-crestacuernavaca.com.mx/
+ADR:;;Cuernavaca;Morelos;Mexico
+END:VCARD`;
+
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Erick_Salgado_Castrejon.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Force video playback and error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('video');
+
+            videos.forEach(video => {
+                video.muted = true;
+                video.play().catch(error => {
+                    console.error('Error al reproducir video:', error);
+                    // Fallback: mostrar imagen poster o gradiente
+                    video.style.display = 'none';
+                    const parent = video.parentElement;
+                    if (parent.classList.contains('poster-section')) {
+                        parent.style.background = 'linear-gradient(135deg, #001E50, #00B0F0)';
+                    } else if (parent.classList.contains('footer')) {
+                        parent.style.background = 'linear-gradient(135deg, #001122, #001E50)';
+                    }
+                });
+            });
+
+            // Specific fix for poster.mp4
+            const posterVideo = document.querySelector('.poster-section video');
+            if (posterVideo) {
+                console.log('Poster video encontrado, intentando reproducir...');
+
+                // Force attributes
+                posterVideo.muted = true;
+                posterVideo.autoplay = true;
+                posterVideo.loop = true;
+                posterVideo.playsInline = true;
+
+                // Try to play immediately
+                const playPromise = posterVideo.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('✅ Poster video reproduciendo correctamente');
+                    }).catch(error => {
+                        console.error('❌ Error al reproducir poster video:', error);
+
+                        // Solution 1: Retry with delay
+                        setTimeout(() => {
+                            posterVideo.play().catch(e => console.error('Reintento falló:', e));
+                        }, 500);
+                    });
+                }
+
+                // Solution 2: Play on scroll to section
+                const posterSection = document.querySelector('.poster-section');
+                if (posterSection) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                posterVideo.play().catch(e => console.error('Play on scroll failed:', e));
+                            }
+                        });
+                    }, { threshold: 0.5 });
+
+                    observer.observe(posterSection);
+                }
+
+                // Solution 3: Play on first click anywhere
+                document.addEventListener('click', function playPosterOnClick() {
+                    if (posterVideo.paused) {
+                        posterVideo.play().catch(e => console.error('Play on click failed:', e));
+                    }
+                    document.removeEventListener('click', playPosterOnClick);
+                });
+
+                // Solution 4: Check if video has data
+                posterVideo.addEventListener('loadeddata', function() {
+                    console.log('✅ Poster video cargado, duración:', posterVideo.duration);
+                    posterVideo.play().catch(e => console.error('Play on loadeddata failed:', e));
+                });
+
+                // Solution 5: Handle load errors
+                posterVideo.addEventListener('error', function(e) {
+                    console.error('❌ Error al cargar poster video:', e);
+                    console.error('Código de error:', posterVideo.error.code);
+                    console.error('Mensaje:', posterVideo.error.message);
+                });
+            } else {
+                console.error('❌ Poster video NO encontrado en el DOM');
+            }
+
+            // DEBUGGING: Verify mobile video settings
+            if (window.innerWidth <= 768) {
+                console.log('📱 Mobile video debugging:');
+                const mobileVideos = document.querySelectorAll('.hero-video, .poster-video, .footer-video');
+
+                mobileVideos.forEach(video => {
+                    const computedStyle = window.getComputedStyle(video);
+                    console.log(`${video.className}:`, {
+                        objectFit: computedStyle.objectFit,
+                        objectPosition: computedStyle.objectPosition,
+                        width: computedStyle.width,
+                        height: computedStyle.height,
+                        position: computedStyle.position,
+                        top: computedStyle.top,
+                        left: computedStyle.left,
+                        transform: computedStyle.transform
+                    });
+
+                    // Verify object-fit is 'contain' on mobile
+                    if (computedStyle.objectFit !== 'contain') {
+                        console.warn(`⚠️ ${video.className} NO tiene object-fit: contain en móvil!`);
+                    } else {
+                        console.log(`✅ ${video.className} configurado correctamente para móvil`);
+                    }
+                });
+            }
+        });
+
+        // Performance optimizations
+        // Lazy load videos
+        const videos = document.querySelectorAll('video');
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const video = entry.target;
+                    video.play().catch(e => console.log('Video play failed:', e));
+                    videoObserver.unobserve(video);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        videos.forEach(video => videoObserver.observe(video));
+
+        // Disable cursor on mobile
+        if (window.innerWidth <= 1024) {
+            cursor.style.display = 'none';
+        }
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 1024) {
+                cursor.style.display = 'none';
+            } else {
+                cursor.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
