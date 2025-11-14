@@ -781,7 +781,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video class="video-bg" autoplay muted loop playsinline>
+        <video class="video-bg" autoplay muted loop playsinline preload="auto">
             <source src="hero.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
@@ -1012,97 +1012,93 @@ END:VCARD`;
         });
 
         // Force video playback and error handling
-        document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('load', function() {
             const videos = document.querySelectorAll('video');
 
-            videos.forEach(video => {
+            function attemptPlay(video) {
                 video.muted = true;
-                video.play().catch(error => {
-                    console.error('Error al reproducir video:', error);
-                    // Fallback: mostrar imagen poster o gradiente
+                video.autoplay = true;
+                video.loop = true;
+                video.playsInline = true;
+
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('✅ Video reproduciendo:', video.src);
+                    }).catch(error => {
+                        console.error('❌ Error al reproducir video:', video.src, error);
+                        // Retry after delay
+                        setTimeout(() => {
+                            video.play().catch(e => console.error('Reintento falló:', video.src, e));
+                        }, 500);
+                    });
+                }
+            }
+
+            videos.forEach(video => {
+                // Play when data is loaded
+                video.addEventListener('loadeddata', function() {
+                    console.log('✅ Video cargado:', video.src, 'duración:', video.duration);
+                    attemptPlay(video);
+                });
+
+                // Handle load errors
+                video.addEventListener('error', function(e) {
+                    console.error('❌ Error al cargar video:', video.src, e);
+                    if (video.error) {
+                        console.error('Código de error:', video.error.code, 'Mensaje:', video.error.message);
+                    }
+                    // Fallback: hide video and set background
                     video.style.display = 'none';
                     const parent = video.parentElement;
                     if (parent.classList.contains('poster-section')) {
                         parent.style.background = 'linear-gradient(135deg, #001E50, #00B0F0)';
                     } else if (parent.classList.contains('footer')) {
                         parent.style.background = 'linear-gradient(135deg, #001122, #001E50)';
+                    } else if (parent.classList.contains('hero')) {
+                        parent.style.background = 'linear-gradient(135deg, #001E50, #00B0F0)';
                     }
                 });
+
+                // Try to play immediately (in case already loaded)
+                attemptPlay(video);
             });
 
-            // Specific fix for poster.mp4
-            const posterVideo = document.querySelector('.poster-section video');
-            if (posterVideo) {
-                console.log('Poster video encontrado, intentando reproducir...');
-
-                // Force attributes
-                posterVideo.muted = true;
-                posterVideo.autoplay = true;
-                posterVideo.loop = true;
-                posterVideo.playsInline = true;
-
-                // Try to play immediately
-                const playPromise = posterVideo.play();
-
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        console.log('✅ Poster video reproduciendo correctamente');
-                    }).catch(error => {
-                        console.error('❌ Error al reproducir poster video:', error);
-
-                        // Solution 1: Retry with delay
-                        setTimeout(() => {
-                            posterVideo.play().catch(e => console.error('Reintento falló:', e));
-                        }, 500);
-                    });
-                }
-
-                // Solution 2: Play on scroll to section
-                const posterSection = document.querySelector('.poster-section');
-                if (posterSection) {
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                posterVideo.play().catch(e => console.error('Play on scroll failed:', e));
-                            }
-                        });
-                    }, { threshold: 0.5 });
-
-                    observer.observe(posterSection);
-                }
-
-                // Solution 3: Play on first click anywhere
-                document.addEventListener('click', function playPosterOnClick() {
-                    if (posterVideo.paused) {
-                        posterVideo.play().catch(e => console.error('Play on click failed:', e));
+            // Intersection observer for lazy play (additional fallback)
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        if (video.paused) {
+                            video.play().catch(e => console.error('Play on intersection failed:', video.src, e));
+                        }
+                        videoObserver.unobserve(video);
                     }
-                    document.removeEventListener('click', playPosterOnClick);
                 });
+            }, { threshold: 0.1 });
 
-                // Solution 4: Check if video has data
-                posterVideo.addEventListener('loadeddata', function() {
-                    console.log('✅ Poster video cargado, duración:', posterVideo.duration);
-                    posterVideo.play().catch(e => console.error('Play on loadeddata failed:', e));
-                });
+            videos.forEach(video => videoObserver.observe(video));
 
-                // Solution 5: Handle load errors
-                posterVideo.addEventListener('error', function(e) {
-                    console.error('❌ Error al cargar poster video:', e);
-                    console.error('Código de error:', posterVideo.error.code);
-                    console.error('Mensaje:', posterVideo.error.message);
-                });
-            } else {
-                console.error('❌ Poster video NO encontrado en el DOM');
-            }
+            // Play on first user interaction (final fallback)
+            let interactionPlayed = false;
+            document.addEventListener('click', function playOnInteraction() {
+                if (!interactionPlayed) {
+                    videos.forEach(video => {
+                        if (video.paused) {
+                            video.play().catch(e => console.error('Play on interaction failed:', video.src, e));
+                        }
+                    });
+                    interactionPlayed = true;
+                }
+                document.removeEventListener('click', playOnInteraction);
+            });
 
             // DEBUGGING: Verify mobile video settings
             if (window.innerWidth <= 768) {
                 console.log('📱 Mobile video debugging:');
-                const mobileVideos = document.querySelectorAll('.hero-video, .poster-video, .footer-video');
-
-                mobileVideos.forEach(video => {
+                videos.forEach(video => {
                     const computedStyle = window.getComputedStyle(video);
-                    console.log(`${video.className}:`, {
+                    console.log(`${video.className || 'video'}:`, {
                         objectFit: computedStyle.objectFit,
                         objectPosition: computedStyle.objectPosition,
                         width: computedStyle.width,
@@ -1112,31 +1108,10 @@ END:VCARD`;
                         left: computedStyle.left,
                         transform: computedStyle.transform
                     });
-
-                    // Verify object-fit is 'contain' on mobile
-                    if (computedStyle.objectFit !== 'contain') {
-                        console.warn(`⚠️ ${video.className} NO tiene object-fit: contain en móvil!`);
-                    } else {
-                        console.log(`✅ ${video.className} configurado correctamente para móvil`);
-                    }
                 });
             }
         });
 
-        // Performance optimizations
-        // Lazy load videos
-        const videos = document.querySelectorAll('video');
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const video = entry.target;
-                    video.play().catch(e => console.log('Video play failed:', e));
-                    videoObserver.unobserve(video);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        videos.forEach(video => videoObserver.observe(video));
 
         // Disable cursor on mobile
         if (window.innerWidth <= 1024) {
